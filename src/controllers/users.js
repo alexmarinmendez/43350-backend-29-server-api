@@ -1,8 +1,9 @@
 import { userService } from '../services/Factory.js'
+import UserDTO from '../dto/Users.js'
 
 const getUsers = async(req, res) => {
     let results = await userService.get()
-    res.send(results)
+    res.send(results.map(result => new UserDTO(result)))
 }
 
 const saveUser = async(req, res) => {
